@@ -1,0 +1,18 @@
+body {margin: 0px auto; overflow-x: hidden; font-family: helvetica}
+
+.title-panel, .player1-panel, .player2-panel {border: none; background-color: #ffffff80;}
+
+.title-panel {background:none !important; border:none !important;}
+
+.title-panel .games-title, .title-panel .score-title {background-color: #ffffff80 !important; border-radius: 1rem; margin: 0 2px;}
+
+.title-panel {height: 2em !important;}
+
+.title-panel .event-name {opacity: 0;}
+
+.ball-b, .ball-r, .ball-g, .ball-p {left:2em;z-index:1;}
+.ball-w .ball {border:none;}
+
+.score-panel, .player-games {
+    border-right-color: #ffffff80 !important;
+}

@@ -1,0 +1,88 @@
+.list-container{
+    margin: .5rem 0;
+    transform: scale(1);
+    transition: all .5s;
+    display: flex;
+}
+
+.list-container:hover{
+    transform: scale(1.02);
+    transition: all .5s;
+}
+
+.list-content{
+    display:flex;
+    flex: 1;
+    padding: .5rem;
+    border: 3px solid black;
+    border-radius: .5rem 0 0 .5rem;
+}
+
+.list-settings{
+    display: flex;
+    border: 3px solid black;
+    border-left: none;
+}
+
+.list-settings div{
+    padding: .5rem 1rem;
+    transition: all .5s;
+}
+
+.list-settings div:hover{
+    transition: all .5s;
+}
+
+.list-settings div.enable:hover{
+    color: var(--success-color);
+}
+
+.list-settings div.edit:hover{
+    color: var(--warning-color);
+}
+
+.list-settings div.delete:hover, .list-settings div.disable:hover{
+    color: var(--error-color);
+}
+
+.player-flag{
+    padding: 0 .5em;
+    text-align: center;
+    align-content: center;
+    display: grid;
+    justify-content: center;
+}
+
+.player-flag img{
+    height: 1em;
+    border: .1em solid black;
+    margin-left: .5em;
+    max-width: 5em;
+}
+
+.list-heading {
+    display:flex;
+    margin-bottom: .5em;
+}
+
+.heading-title {
+    flex: 1;
+}
+
+.list-name {
+    display: flex;
+}
+
+.list-name input {
+    margin: 0 .5em;
+}
+
+.list-name label {
+    font-size: 24px;
+    align-self: center;
+    font-weight: bold;
+}
+
+.btn-enable {
+    margin: 0 .5em;
+}

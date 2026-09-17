@@ -1,0 +1,87 @@
+:root{
+	--dark-primary-color: #0097A7; 
+	--default-primary-color: #00BCD4; 
+	--light-primary-color: #B2EBF2; 
+	--text-primary-color: #FFFFFF; 
+	--accent-color: #00d482;
+	--light-accent-color: #5effc1;
+	--primary-text-color: #212121; 
+	--secondary-text-color: #757575; 
+	--divider-color: #BDBDBD; 
+	--warning-color: #ffc107;
+	--error-color: #dc3545;
+	--success-color: #28a745;
+}
+
+.dark-primary-color    {
+	background-color: var(--dark-primary-color) !important;
+	border-color:var(--dark-primary-color) !important;
+}
+
+.default-primary-color { 
+	background-color: var(--default-primary-color) !important;
+	border-color:var(--default-primary-color) !important;
+}
+
+.light-primary-color   { 
+	background-color: var(--light-primary-color) !important;
+	border-color:var(--light-primary-color) !important;
+}
+
+.text-primary-color    { 
+	color: var(--text-primary-color) !important;
+}
+
+.accent-color          {
+	background-color: var(--accent-color) !important;
+	border-color:var(--accent-color) !important;
+}
+
+.light-accent-color    { 
+	background-color: var(--light-accent-color) !important;
+	border-color:var(--light-accent-color) !important; 
+}
+
+.primary-text-color    { 
+	color: var(--primary-text-color) !important;
+}
+
+.secondary-text-color  { 
+	color: var(--secondary-text-color) !important;
+}
+
+.divider-color         { 
+	border-color: var(--divider-color) !important;
+	border-color:var(--divider-color) !important; 
+}
+
+.error-color { 
+	background-color: var(--error-color) !important;
+	border-color:var(--error-color) !important;
+}
+
+.warning-color { 
+	background-color: var(--warning-color) !important;
+	border-color:var(--warning-color) !important;
+}
+
+.success-color { 
+	background-color: var(--success-color) !important;
+	border-color:var(--success-color) !important;
+}
+
+.error-text{
+    padding: 1rem 0;
+    color:red;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-text{
+    padding: 1rem 0;
+    color:green;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}

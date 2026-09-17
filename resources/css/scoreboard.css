@@ -1,0 +1,311 @@
+.control-panel{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.score-type, .game-type, .player-select, .switch-scoreboard{
+    width:100%;
+    display: flex;
+    margin: .5rem 0;
+}
+
+.score-type label, .game-type label, .player-select label, .switch-scoreboard label {
+    width: 33%;
+    font-size: 16px;
+    align-content: center;
+    font-weight: bold;
+}
+
+.score-type select, .game-type select, .player-select select#player1, .player-select select#player2 {
+    width: 66%;
+}
+
+.switch-scoreboard select, .player-select select#country1, .player-select select#country2, .player-select input, .switch-scoreboard button {
+    width: 30%;
+}
+
+.switch-scoreboard button, .player-select select {
+    margin-left: .5em;
+}
+
+.games, .score, .save-games{
+    width: 100%;
+    padding:0 1em;
+    margin: 1rem 0;
+    max-width: 400px;
+}
+
+#btn-switch {
+    display: flex;
+    justify-content: center;
+}
+
+#btn-switch .btn{
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+@media screen and (min-width: 768px) {
+    .games, .score, .save-games{
+        width: 50%;
+    }
+    .control-panel{
+        flex-direction: row !important;
+    }
+
+    .score-type label, .game-type label, .switch-scoreboard label, .switch-scoreboard button, .player-select label, .player-select select#country1, .player-select select#country2{
+        width: 25%;
+    }
+
+    .score-type select, .game-type select, .player-select select#player1, .player-select select#player2{
+        width: 75%;
+    }
+
+    .switch-scoreboard select, .player-select input, #btn-switch .btn{
+        width: 50%;
+    }
+}
+
+.games-1 button, .score-1 button, .games-2 button, .score-2 button, .score-3 button, .score-4 button, 
+.score-5 button, .score-6 button, .score-7 button, .score-8 button, .score-9 button, .score-10 button, .label{
+    width:33%;
+    text-align: center;
+}
+
+.games-1, .games-2, .score-1, .score-2, .score-3, .score-4, .score-5, .score-6, .score-7, .score-8, .score-9, .score-10{
+    display: flex;
+    line-height: 2em;
+    padding: .1em 0;
+    gap: .5rem;
+}
+
+.reset{
+    width:100%;
+    text-align: center;
+    display: flex;
+}
+
+.reset button{
+    width: 100%;
+    margin: .25em 1em;
+}
+
+.label{
+    border-radius: 1rem;
+}
+
+.games-list{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: .5em;
+    margin: .5rem 0;
+    padding: .5rem;
+}
+
+.game-item{
+    display: flex;
+}
+
+.games-btn{
+    color: white;
+}
+
+.games-btn button{
+    color: white;
+}
+
+.g-score{
+    flex:1;
+    padding: 0 .5rem;
+    text-align: left;
+    font-weight: bold;
+}
+
+.g-delete{
+    width: 2em;
+}
+
+#copy-link{
+    display: flex;
+    justify-content: end;
+}
+
+h2{
+    align-content: center ;
+}
+
+.grid-7, .grid-10{
+    align-content: end;
+}
+
+#btn-update .btn{
+    width:100%;
+}
+
+#color{
+    width: 100%;
+    height: 2em;
+    padding: .25em;
+    height: auto;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(15, 1fr);
+    grid-template-areas: 
+    'one' 
+    'two' 
+    'seventeen'
+    'four'
+    'five'
+    'six'
+    'eighteen'
+    'nineteen'
+    'twenty'
+    'twenty-one'
+    'ten'
+    'seven'
+    'nine'
+    'eight'
+    'thirteen';
+}
+
+@media screen and (max-width: 767px) {
+    h2{
+        align-content: end ;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .grid{
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(7, 1fr);
+        grid-template-areas: 
+        'one two two four' 
+        'five six . .'
+        'eighteen nineteen . .'
+        'twenty twenty-one . .'
+        'ten seven seven .'
+        'nine eight eight .'
+        '. thirteen thirteen .';
+    }
+    .grid-15, .grid-16, .grid-17{
+        display: none;
+    }
+}
+
+.grid-1{
+    grid-area: one;
+}
+
+.grid-2{
+    grid-area: two;
+}
+
+.grid-3{
+    grid-area: three;
+}
+
+.grid-4{
+    grid-area: four;
+}
+
+.grid-5{
+    grid-area: five;
+}
+
+.grid-6{
+    grid-area: six;
+}
+
+.grid-7{
+    grid-area: seven;
+}
+
+.grid-8{
+    grid-area: eight;
+}
+
+.grid-9{
+    grid-area: nine;
+}
+
+.grid-10{
+    grid-area: ten;
+}
+
+.grid-11{
+    grid-area: eleven;
+}
+
+.grid-12{
+    grid-area: twelve;
+}
+
+.grid-13{
+    grid-area: thirteen;
+}
+
+.grid-14{
+    grid-area: fourteen;
+}
+
+.grid-15{
+    grid-area: fifteen;
+}
+
+.grid-16{
+    grid-area: sixteen;
+}
+
+.grid-17{
+    grid-area: seventeen;
+}
+
+.grid-18{
+    grid-area: eighteen;
+}
+
+.grid-19{
+    grid-area: nineteen;
+}
+
+.grid-20{
+    grid-area: twenty;
+}
+
+.grid-21{
+    grid-area: twenty-one;
+}
+
+.scoreboard-nav{
+    display: flex;
+    border-bottom: 2px solid var(--divider-color);
+    padding: 0;
+    font-size: 20px;
+}
+
+.scoreboard-nav div{
+    width: 33.33%;  
+    text-align: center;
+    cursor: pointer;
+    padding: .5rem 0;
+}
+
+.scoreboard-nav div:hover{
+    background-color: var(--divider-color);
+}
+
+.scoreboard-nav div.active{
+    text-decoration: underline;
+    text-underline-offset: .25rem;
+    text-decoration-color: var(--default-primary-color);
+    text-decoration-thickness: 3px;
+}

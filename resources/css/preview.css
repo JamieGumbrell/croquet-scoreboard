@@ -1,0 +1,144 @@
+.title-panel, .player1-panel, .player2-panel{
+    height: 5em;
+    margin: .25em 0;
+    background-color: #fffb;
+    border-radius: 1em;
+    border: .25em solid black;
+    display: flex;
+}
+
+.display-panel{
+    flex: 1;
+    display: flex;
+}
+
+.score-panel{
+    display: flex;
+}
+
+.score-panel .player-score, .score-panel .player-games{
+    width: 6em;
+}
+
+.event-name, .player-name{
+    align-content: center;
+    display: flex;
+    flex: 1;
+    padding-left: .5em;
+}
+
+.player-name h3{
+    align-content: center;
+    margin: auto 0;
+}
+
+.games-title, .score-title, .player-games, .player-score, .player-total, .player-flag{
+    width: 6em;
+    text-align: center;
+    align-content: center;
+    display: grid;
+    justify-content: center;
+}
+
+.player-games.score-narrow{
+    width: 5em;
+    font-size: .8em;
+}
+
+.score-panel .player-games{
+    border-right: 2px solid var(--divider-color);
+}
+
+.score-panel .player-total{
+    border-left: 2px solid var(--divider-color);
+}
+
+.player-flag img{
+    height: 3em;
+    border: .1em solid black;
+    margin-left: .5em;
+    max-width: 5em;
+}
+
+h1{
+    font-size: 3em;
+    align-content: center;
+    margin: auto 0;
+}
+
+h2{
+    font-size: 1.5em;
+}
+
+h3{
+    font-size: 2em;
+}
+
+h4{
+    font-size: 3em;
+}
+
+.ball-b, .ball-r, .ball-k, .ball-y, .ball-g, .ball-p, .ball-n, .ball-w{
+    min-width: 3.5em;
+    position: relative;
+    display: grid;
+}
+
+.ball{
+    margin: auto;
+    width: 3em;
+    height: 3em;
+    border-radius:50%;
+}
+
+.ball-b .ball, .player-score.ball-b, .square-b{
+    background-color: blue;
+    color: white;
+}
+
+.ball-r .ball, .player-score.ball-r, .square-r{
+    background-color: red;
+    color: white;
+}
+
+.ball-k .ball, .player-score.ball-k, .square-k{
+    background-color: black;
+    color: white;
+}
+
+.ball-y .ball, .player-score.ball-y, .square-y{
+    background-color: yellow;
+    color: black;
+}
+
+.ball-g .ball, .player-score.ball-g, .square-g{
+    background-color: green;
+    color: white;
+}
+
+.ball-p .ball, .player-score.ball-p, .square-p{
+    background-color: pink;
+    color: black;
+}
+
+.ball-n .ball, .player-score.ball-n, .square-n{
+    background-color: #8B4513;
+    color: white;
+}
+
+.ball-w .ball{
+    background-color: white;
+    border: 2px solid black;
+}
+.player-score.ball-w, .square-w{
+    background-color: white;
+    color: black;
+}
+
+.score-panel .player-score:last-of-type{
+    border-radius: 0 .5em .5em 0;
+}
+
+.score-title.span-2{
+    width: 12em;
+}
