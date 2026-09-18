@@ -14,17 +14,21 @@ return new class extends Migration
         Schema::create('scoreboards', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('uid');
-            $table->string('title');
-            $table->string('color');
-            $table->string('name1');
-            $table->string('name2');
-            $table->string('country1');
-            $table->string('country2');
-            $table->string('ball_color');
-            $table->integer('games1');
-            $table->integer('games2');
-            array_map(fn($i) => $table->integer("score{$i}"), range(1, 10));
+            $table->string('uid')->unique();
+            $table->string('title')->default('New Event');
+            $table->string('color')->default('#00ff00');
+            $table->string('name1')->nullable();
+            $table->string('name2')->nullable();
+            $table->string('country1')->nullable();
+            $table->string('country2')->nullable();
+            $table->string('ball_color')->default('primary');
+            $table->integer('games1')->default('0');
+            $table->integer('games2')->default('0');
+            array_map(fn($i) => $table->integer("score{$i}")->default('0'), range(1, 10));
+            $table->string('design')->default('default');
+            $table->integer('width')->default('800');
+            $table->string('scoretype')->default('single');
+            $table->string('gametype')->default('0');
             $table->timestamps();
         });
 

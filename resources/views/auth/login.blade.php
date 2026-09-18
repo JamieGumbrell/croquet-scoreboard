@@ -17,8 +17,8 @@
                     <button class="w-50 btn default-primary-color text-primary-color" type='submit'>Login</button>
                 </div>
             </form>
-            <p class="text-center link"><a href="{{route('register')}}">Register an Account</a></p>
-            <p class="text-center link"><a href="{{route('forgot')}}">Forgot my Password</a></p>
+            <p class="text-center link"><a href="{{route('register.view')}}">Register an Account</a></p>
+            <p class="text-center link"><a href="{{route('forgot.view')}}">Forgot my Password</a></p>
             @if ($errors->any())
                 <div style="color: red; margin-bottom: 15px;">
                     <ul>

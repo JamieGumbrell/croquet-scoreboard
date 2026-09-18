@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    @vite(['resources/css/palette.css', 'resources/css/default.css'])
+	@vite(['resources/css/palette.css', 'resources/css/default.css'])
     <title>Croquet Scoreboard</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
 	<div class="nav-right">
 		@auth
 			<a href="{{route('player_lists')}}">Player Lists</a>
-			<a href="{{route('scoreboards')}}">Scoreboards</a>
+			<a href="{{route('scoreboards.index')}}">Scoreboards</a>
 			<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 		@endauth
 		
@@ -26,6 +26,6 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
 </form>
-    @yield('body')
+	@yield('body')
 </body>
 </html>

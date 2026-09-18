@@ -1,58 +1,173 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Croquet Scoreboard
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel application for creating and displaying croquet scoreboards.
 
-## About Laravel
+## Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Install these programs on the new machine:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP 8.3 or newer, with the SQLite and Mbstring extensions enabled
+- Composer
+- Node.js and npm
+- Git, to clone the repository
+- GNU Make, optional for the shortcut commands below
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The application uses SQLite by default. A different database can be used by changing the `DB_*` values in `.env`.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Check the installed versions:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php -v
+composer -V
+node --version
+npm --version
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Initial Setup
 
-## Contributing
+Clone the repository and enter its directory:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone <repository-url> croquet-scoreboard
+cd croquet-scoreboard
+```
 
-## Code of Conduct
+Install PHP and JavaScript dependencies, create the environment file, generate the application key, run migrations, and build the frontend:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer run setup
+```
 
-## Security Vulnerabilities
+The setup script performs these steps:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Installs Composer dependencies.
+2. Creates `.env` from `.env.example` if it does not exist.
+3. Generates `APP_KEY`.
+4. Runs database migrations.
+5. Installs npm dependencies.
+6. Builds the Vite assets.
 
-## License
+Review `.env` and update `APP_NAME`, `APP_URL`, and database settings as needed. Do not overwrite an existing `.env` file when setting up an existing installation.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+If you prefer to run the steps individually:
+
+```powershell
+composer install
+Copy-Item .env.example .env
+php artisan key:generate
+php artisan migrate
+npm ci
+npm run build
+```
+
+## Development
+
+Run the Laravel server in one terminal:
+
+```bash
+php artisan serve
+```
+
+Run Vite in a second terminal so frontend changes are rebuilt automatically:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:8000](http://localhost:8000).
+
+After changing database migrations, run:
+
+```bash
+php artisan migrate
+```
+
+Run the test suite with:
+
+```bash
+php artisan test
+```
+
+### Make Shortcuts
+
+If GNU Make is installed, the common commands can be run from the project root:
+
+```bash
+make setup       # First-time setup
+make dev        # Start Laravel and Vite development processes
+make test       # Run tests
+make migrate    # Run pending migrations
+make build      # Build frontend assets
+```
+
+On Windows, run these commands from Git Bash, WSL, or another shell with GNU Make available. The equivalent `php artisan`, `composer`, and `npm` commands above work without Make.
+
+## Production Build
+
+Install production PHP dependencies and compile the frontend assets:
+
+```bash
+composer install --no-dev --optimize-autoloader
+npm ci
+npm run build
+```
+
+Configure production values in `.env` before caching configuration:
+
+```dotenv
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.example
+```
+
+Run migrations and optimize Laravel caches:
+
+```bash
+php artisan migrate --force
+php artisan storage:link
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+## Deployment
+
+Deploy the repository to the server, then from the application directory:
+
+```bash
+composer install --no-dev --optimize-autoloader
+npm ci
+npm run build
+php artisan migrate --force
+php artisan storage:link
+php artisan optimize
+```
+
+Set the web server document root to the project’s `public` directory. Do not serve the project root, because it would expose application files.
+
+The server must be able to write to:
+
+- `storage`
+- `bootstrap/cache`
+
+For a new deployment, create and configure `.env` before running Artisan commands that read application configuration. Restart PHP-FPM or the application server after deploying code or changing environment variables.
+
+After deployment, verify the application at `APP_URL` and check `storage/logs/laravel.log` if a request fails.
+
+## Useful Commands
+
+```bash
+php artisan route:list       # List routes
+php artisan migrate:status   # Show migration status
+php artisan optimize:clear   # Clear cached configuration, routes, and views
+php artisan optimize         # Rebuild production caches
+```
+
+The Makefile also provides these production shortcuts:
+
+```bash
+make production # Install production dependencies and build assets
+make deploy     # Migrate, link storage, and optimize Laravel
+make clear      # Clear Laravel caches
+make optimize   # Rebuild Laravel caches
+```

@@ -29,7 +29,9 @@
 }
 
 .scoreboard-settings div{
-    padding: .5rem 1rem;
+    display: flex;
+    padding: .25rem;
+    width: 2rem;
     transition: all .5s;
 }
 

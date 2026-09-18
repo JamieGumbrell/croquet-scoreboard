@@ -21,4 +21,9 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+    input: [
+        'resources/css/app.css',
+        'resources/js/app.js',
+        'resources/js/scoreboard-show.ts',
+    ],
 });

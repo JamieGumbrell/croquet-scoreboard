@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('scoreboards')->with('success', 'Account created successfully!');
+        return redirect()->route('scoreboards.index')->with('success', 'Account created successfully!');
     }
 
     // Handle user login
@@ -42,7 +42,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('scoreboards');
+            return redirect()->intended('/scoreboards');
         }
 
         return back()->withErrors([

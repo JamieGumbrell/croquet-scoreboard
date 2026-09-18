@@ -285,7 +285,7 @@ h2{
     grid-area: twenty-one;
 }
 
-.scoreboard-nav{
+div.scoreboard-nav{
     display: flex;
     border-bottom: 2px solid var(--divider-color);
     padding: 0;
@@ -303,9 +303,15 @@ h2{
     background-color: var(--divider-color);
 }
 
-.scoreboard-nav div.active{
+.scoreboard-nav div[aria-selected="true"]{
     text-decoration: underline;
     text-underline-offset: .25rem;
     text-decoration-color: var(--default-primary-color);
     text-decoration-thickness: 3px;
+}
+
+.scoreboard-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
