@@ -70,7 +70,28 @@ export const initializeScoresTab = (context: ScoreboardContext): void => {
         });
     };
 
+    const hydrateScoreForm = (scoreboard: Record<string, unknown>): void => {
+        trackedLabels.forEach((label) => {
+            const fieldName = label.id.startsWith('games-')
+                ? label.id.replace('games-', 'games')
+                : label.id.replace('score-', 'score');
+            const value = scoreboard[fieldName];
+
+            if (value === undefined) {
+                return;
+            }
+
+            label.textContent = String(value);
+            const input = scoresForm.elements.namedItem(fieldName);
+
+            if (input instanceof HTMLInputElement) {
+                input.value = String(value);
+            }
+        });
+    };
+
     context.app.addEventListener('scoreboard:updated', updateScoreLabels);
+    hydrateScoreForm(context.scoreboard);
 
     let scoreUpdateQueue = Promise.resolve();
     let latestScoreUpdate = 0;

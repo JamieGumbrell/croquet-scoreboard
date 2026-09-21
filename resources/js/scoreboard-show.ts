@@ -1,6 +1,7 @@
 import { createScoreboardContext } from './scoreboard-common';
 import { initializeScoresTab } from './scoreboard-scores';
 import { initializeTabs } from './scoreboard-tabs';
+import { initializePreview } from './scoreboard-preview';
 
 const app = document.querySelector<HTMLElement>('#scoreboard-app');
 
@@ -8,5 +9,6 @@ if (app) {
     const scoreboardContext = createScoreboardContext(app);
 
     initializeScoresTab(scoreboardContext);
+    initializePreview(scoreboardContext);
     initializeTabs(app);
 }

@@ -3,6 +3,7 @@ export type Scoreboard = Record<string, unknown>;
 export interface ScoreboardContext {
     app: HTMLElement;
     channel: BroadcastChannel | null;
+    scoreboard: Scoreboard;
 }
 
 export const createScoreboardContext = (app: HTMLElement): ScoreboardContext => {
@@ -11,7 +12,7 @@ export const createScoreboardContext = (app: HTMLElement): ScoreboardContext => 
         ? null
         : new BroadcastChannel(`scoreboard:${scoreboard.id ?? 'unknown'}`);
 
-    const context: ScoreboardContext = { app, channel };
+    const context: ScoreboardContext = { app, channel, scoreboard };
 
     channel?.addEventListener('message', (event: MessageEvent<Scoreboard>) => {
         if (event.data && typeof event.data === 'object') {
@@ -23,6 +24,7 @@ export const createScoreboardContext = (app: HTMLElement): ScoreboardContext => 
 };
 
 export const applyScoreboard = (context: ScoreboardContext, scoreboard: Scoreboard): void => {
+    context.scoreboard = scoreboard;
     context.app.dataset.scoreboard = JSON.stringify(scoreboard);
 
     document.querySelectorAll<HTMLFormElement>('form').forEach((form) => {

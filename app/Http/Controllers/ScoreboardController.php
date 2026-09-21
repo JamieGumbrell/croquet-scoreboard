@@ -30,8 +30,11 @@ class ScoreboardController extends Controller
      */
     public function store(Request $request)
     {
-        $validated['user_id'] = auth()->id();
-        Scoreboard::create($validated);
+        Scoreboard::create([
+            'user_id' => auth()->id(),
+            'country1' => null,
+            'country2' => null,
+        ]);
 
         return redirect()->route('scoreboards.index')->with('success', 'Scoreboard created successfully.');
     }
@@ -45,6 +48,16 @@ class ScoreboardController extends Controller
 
         return response()
             ->view('scoreboards.show', compact('scoreboard', 'countries'))
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    }
+
+    public function preview(Scoreboard $scoreboard)
+    {
+        return response()
+            ->view('scoreboards.preview', [
+                'scoreboard' => $scoreboard->fresh(),
+                'countries' => Country::all(),
+            ])
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
     }
 
@@ -71,8 +84,8 @@ class ScoreboardController extends Controller
             'gametype' => ['sometimes', 'required', 'in:-1,0,1'],
             'name1' => ['sometimes', 'nullable', 'string', 'max:255'],
             'name2' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'country1' => ['sometimes', 'nullable', 'string', 'max:10'],
-            'country2' => ['sometimes', 'nullable', 'string', 'max:10'],
+            'country1' => ['sometimes', 'nullable', 'integer', 'exists:countries,id'],
+            'country2' => ['sometimes', 'nullable', 'integer', 'exists:countries,id'],
             'games1' => ['sometimes', 'required', 'integer', 'min:0'],
             'games2' => ['sometimes', 'required', 'integer', 'min:0'],
             'score1' => ['sometimes', 'required', 'integer', 'min:0'],

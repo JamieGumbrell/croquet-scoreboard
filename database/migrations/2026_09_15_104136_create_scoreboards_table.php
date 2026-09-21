@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('color')->default('#00ff00');
             $table->string('name1')->nullable();
             $table->string('name2')->nullable();
-            $table->string('country1')->nullable();
-            $table->string('country2')->nullable();
+            $table->foreignId('country1')->nullable()->constrained('countries')->nullOnDelete();
+            $table->foreignId('country2')->nullable()->constrained('countries')->nullOnDelete();
             $table->string('ball_color')->default('primary');
             $table->integer('games1')->default('0');
             $table->integer('games2')->default('0');
@@ -50,7 +50,6 @@ return new class extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
             $table->string('link');
             $table->timestamps();
         });

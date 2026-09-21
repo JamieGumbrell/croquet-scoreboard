@@ -20,6 +20,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('scoreboards', ScoreboardController::class);
+    Route::get('/scoreboards/{scoreboard}/preview', [ScoreboardController::class, 'preview'])->name('scoreboards.preview');
     Route::resource('countries', CountryController::class)->except(['show']);
     Route::view('/players', 'players.player')->name('players');
     Route::view('/player_lists', 'players.index')->name('player_lists');

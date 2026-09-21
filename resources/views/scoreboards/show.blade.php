@@ -5,6 +5,7 @@
     <div
         id="scoreboard-app"
         data-scoreboard='@json($scoreboard)'
+        data-preview-url="{{ route('scoreboards.preview', $scoreboard) }}"
     ></div>
 
     <section id="scoreboard-details-panel">

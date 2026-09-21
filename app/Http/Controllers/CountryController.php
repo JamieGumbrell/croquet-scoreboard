@@ -94,7 +94,6 @@ class CountryController extends Controller
     {
         return $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'code' => ['required', 'string', 'max:255'],
             'image' => [$imageRequired ? 'required' : 'nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:4096'],
         ]);
     }

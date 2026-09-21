@@ -21,10 +21,6 @@
     <input id="country-name" class="input-field" type="text" name="name" value="{{ old('name', $country?->name) }}" required>
 </div>
  <div class="input-container">
-    <h2>Code</h2>
-    <input id="country-code" class="input-field" type="text" name="code" value="{{ old('code', $country?->code) }}" required>
-</div>
- <div class="input-container">
     <h2>Image</h2>
     <input id="country-image" class="input-field" type="file" name="image" accept="image/*">
 </div>
