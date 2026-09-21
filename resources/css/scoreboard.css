@@ -48,6 +48,15 @@
 #btn-switch .btn{
     width: 100%;
     margin-bottom: 1em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .35em;
+}
+
+#btn-switch .swap-icon{
+    width: 1em;
+    height: 1em;
 }
 
 @media screen and (min-width: 768px) {

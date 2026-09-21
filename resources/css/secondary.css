@@ -1,0 +1,17 @@
+.score-1 .label, .games-1 .label{
+    background-color: green;
+    color:white;
+}
+
+.score-2 .label, .games-2 .label{
+    background-color: pink;
+}
+
+.score-3 .label{
+    background-color: #8B4513;
+    color:white;
+}
+
+.score-4 .label{
+    background-color: white;
+}

@@ -1,0 +1,5 @@
+.score-1 .label, .games-1 .label, .score-3 .label, .games-3 .label, 
+    .score-5 .label, .games-5 .label, .score-7 .label, .games-7 .label, .score-9 .label, .games-9 .label{
+    background-color: #ff0000;
+    color:white;
+}

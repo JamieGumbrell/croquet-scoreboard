@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Scoreboard;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class ScoreboardController extends Controller
@@ -40,7 +41,11 @@ class ScoreboardController extends Controller
      */
     public function show(Scoreboard $scoreboard)
     {
-        return view('scoreboards.show', compact('scoreboard'));
+        $countries = Country::all();
+
+        return response()
+            ->view('scoreboards.show', compact('scoreboard', 'countries'))
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
     }
 
     /**
@@ -57,18 +62,38 @@ class ScoreboardController extends Controller
     public function update(Request $request, Scoreboard $scoreboard)
     {
         $validated = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'color' => ['required', 'regex:/^#[0-9a-fA-F]{6}$/'],
-            'ball_color' => ['required', 'in:hid,primary,secondary'],
-            'design' => ['required', 'in:default,simple_light,simple_dark'],
+            'title' => ['sometimes', 'required', 'string', 'max:255'],
+            'color' => ['sometimes', 'required', 'regex:/^#[0-9a-fA-F]{6}$/'],
+            'ball_color' => ['sometimes', 'required', 'in:hid,primary,secondary'],
+            'design' => ['sometimes', 'required', 'in:default,simple_light,simple_dark'],
             'width' => ['nullable', 'string', 'max:255'],
-            'scoretype' => ['required', 'in:single,combined,gateball'],
-            'gametype' => ['required', 'in:-1,0,1'],
+            'scoretype' => ['sometimes', 'required', 'in:single,combined,gateball'],
+            'gametype' => ['sometimes', 'required', 'in:-1,0,1'],
+            'name1' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'name2' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'country1' => ['sometimes', 'nullable', 'string', 'max:10'],
+            'country2' => ['sometimes', 'nullable', 'string', 'max:10'],
+            'games1' => ['sometimes', 'required', 'integer', 'min:0'],
+            'games2' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score1' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score2' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score3' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score4' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score5' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score6' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score7' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score8' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score9' => ['sometimes', 'required', 'integer', 'min:0'],
+            'score10' => ['sometimes', 'required', 'integer', 'min:0'],
         ]);
 
         $scoreboard->update($validated);
 
-        return redirect()->route('scoreboards.index')->with('success', 'Scoreboard updated successfully.');
+        if ($request->expectsJson()) {
+            return response()->json($scoreboard->fresh());
+        }
+
+        return redirect()->route('scoreboards.show', $scoreboard)->with('success', 'Scoreboard updated successfully.');
     }
 
     /**

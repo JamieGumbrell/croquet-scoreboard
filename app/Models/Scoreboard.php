@@ -17,6 +17,22 @@ class Scoreboard extends Model
         'width',
         'scoretype',
         'gametype',
+        'name1',
+        'name2',
+        'country1',
+        'country2',
+        'games1',
+        'games2',
+        'score1',
+        'score2',
+        'score3',
+        'score4',
+        'score5',
+        'score6',
+        'score7',
+        'score8',
+        'score9',
+        'score10',
     ];
 
     protected static function booted()
