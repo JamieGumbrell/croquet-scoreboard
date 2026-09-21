@@ -12,7 +12,6 @@
             <div class="scoreboard-container">
                 <div onclick="window.location.href='{{ route('scoreboards.show', $scoreboard->id) }}'" class="scoreboard-content" style="background-color:{{ $scoreboard->color }};">
                     <h3 style="color: white ?>;">{{ $scoreboard->title }}</h3>
-                    
                 </div>
                 <div class="scoreboard-settings">
                     <div onclick="

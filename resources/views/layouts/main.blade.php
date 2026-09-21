@@ -13,6 +13,7 @@
 	<div class="nav-right">
 		@auth
 			<a href="{{route('player_lists')}}">Player Lists</a>
+			<a href="{{route('countries.index')}}">Countries</a>
 			<a href="{{route('scoreboards.index')}}">Scoreboards</a>
 			<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 		@endauth

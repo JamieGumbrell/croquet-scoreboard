@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ScoreboardController;
 
 // Guest Routes (Accessible only if logged out)
@@ -19,9 +20,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('scoreboards', ScoreboardController::class);
+    Route::resource('countries', CountryController::class)->except(['show']);
     Route::view('/players', 'players.player')->name('players');
     Route::view('/player_lists', 'players.index')->name('player_lists');
-    Route::view('/countries', 'countries.index')->name('countries');
 
 });
 
