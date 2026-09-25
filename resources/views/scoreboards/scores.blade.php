@@ -7,6 +7,10 @@
 @elseif($scoreboard->ball_color == "secondary")
     @vite(['resources/css/secondary.css'])
 @endif
+
+@include('scoreboards.preview')
+
+<hr/>
 <div class="md-container">
     <form id="scoreboard-players-form" method="POST" action="{{ route('scoreboards.update', $scoreboard) }}">
         @csrf

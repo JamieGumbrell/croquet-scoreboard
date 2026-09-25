@@ -5,20 +5,12 @@
     @vite('resources/css/simple_darkLayout.css')
 @endif
 
-@if(false)
-<style>
-    .bg-scoreboard {
-        width: {{ $scoreboard->width }}px;
-    }
-</style>
-@endif
-
 @php
     $country1 = $countries->find($scoreboard->country1);
     $country2 = $countries->find($scoreboard->country2);
 @endphp
 
-<div class="md-container">
+<div class="md-container" data-scoreboard-preview>
     <div id="scoreboard-content" class="bg-scoreboard">
         @if($scoreboard->scoretype == "gateball")
             @include('scoreboards.gateball_preview')

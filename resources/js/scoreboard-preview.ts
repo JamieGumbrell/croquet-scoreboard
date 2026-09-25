@@ -1,10 +1,12 @@
 import { ScoreboardContext } from './scoreboard-common';
 
 export const initializePreview = (context: ScoreboardContext): void => {
-    const panel = document.querySelector<HTMLElement>('#scoreboard-preview-panel');
     const previewUrl = context.app.dataset.previewUrl;
+    const previews = (): NodeListOf<HTMLElement> => document.querySelectorAll<HTMLElement>(
+        '[data-scoreboard-preview]',
+    );
 
-    if (!panel || !previewUrl) {
+    if (!previewUrl || previews().length === 0) {
         return;
     }
 
@@ -22,7 +24,21 @@ export const initializePreview = (context: ScoreboardContext): void => {
                 throw new Error(`Preview refresh failed with status ${response.status}`);
             }
 
-            panel.innerHTML = await response.text();
+            const previewDocument = new DOMParser().parseFromString(
+                await response.text(),
+                'text/html',
+            );
+            const updatedPreview = previewDocument.querySelector<HTMLElement>(
+                '[data-scoreboard-preview]',
+            );
+
+            if (!updatedPreview) {
+                return;
+            }
+
+            previews().forEach((preview) => {
+                preview.innerHTML = updatedPreview.innerHTML;
+            });
         } catch (error) {
             console.error(error);
         }
