@@ -1,16 +1,16 @@
-.list-container{
+.player-list-container{
     margin: .5rem 0;
     transform: scale(1);
     transition: all .5s;
     display: flex;
 }
 
-.list-container:hover{
+.player-list-container:hover{
     transform: scale(1.02);
     transition: all .5s;
 }
 
-.list-content{
+.player-list-content{
     display:flex;
     flex: 1;
     padding: .5rem;
@@ -18,30 +18,32 @@
     border-radius: .5rem 0 0 .5rem;
 }
 
-.list-settings{
+.player-list-settings{
     display: flex;
     border: 3px solid black;
     border-left: none;
 }
 
-.list-settings div{
-    padding: .5rem 1rem;
+.player-list-settings div{
+    display: flex;
+    padding: .25rem;
+    width: 2rem;
     transition: all .5s;
 }
 
-.list-settings div:hover{
+.player-list-settings div:hover{
     transition: all .5s;
 }
 
-.list-settings div.enable:hover{
+.player-list-settings div.enable:hover{
     color: var(--success-color);
 }
 
-.list-settings div.edit:hover{
+.player-list-settings div.edit:hover{
     color: var(--warning-color);
 }
 
-.list-settings div.delete:hover, .list-settings div.disable:hover{
+.player-list-settings div.delete:hover, .player-list-settings div.disable:hover{
     color: var(--error-color);
 }
 
@@ -60,7 +62,7 @@
     max-width: 5em;
 }
 
-.list-heading {
+.player-list-heading {
     display:flex;
     margin-bottom: .5em;
 }
@@ -69,15 +71,15 @@
     flex: 1;
 }
 
-.list-name {
+.player-list-name {
     display: flex;
 }
 
-.list-name input {
+.player-list-name input {
     margin: 0 .5em;
 }
 
-.list-name label {
+.player-list-name label {
     font-size: 24px;
     align-self: center;
     font-weight: bold;

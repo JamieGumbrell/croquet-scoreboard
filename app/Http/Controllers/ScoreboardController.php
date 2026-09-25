@@ -22,7 +22,7 @@ class ScoreboardController extends Controller
      */
     public function create()
     {
-        return view('scoreboards.create');
+        abort(404);
     }
 
     /**

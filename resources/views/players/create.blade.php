@@ -2,6 +2,6 @@
 
 @section('body')
     <div class="md-container">
-        <h2>Player Lists</h2>
+        <h2>Create Player</h2>
     </div>
 @endsection

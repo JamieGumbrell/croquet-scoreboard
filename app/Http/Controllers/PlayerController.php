@@ -20,7 +20,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        //
+        return view('players.create');
     }
 
     /**
@@ -28,7 +28,11 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data['user_id'] = auth()->id();
+        $data['name'] = "New Player";
+        Player::create($data);
+
+        return redirect()->route('players.index')->with('success', 'Player created successfully.');
     }
 
     /**
@@ -36,7 +40,7 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        //
+        return view('players.show', compact('player'));
     }
 
     /**
