@@ -17,6 +17,17 @@
     </section>
 
     <section id="scoreboard-preview-panel">
+        <div class="md-container">
+            <div class="flex">
+                <div class="flex-right">
+                    <button
+                        type="button"
+                        class="btn success-color text-primary-color"
+                        data-copy-preview-link="{{ route('api.preview', ['scoreboard' => $scoreboard->uid]) }}"
+                    >Copy Link</button>
+                </div>
+            </div>
+        </div>
         @include('scoreboards.preview', ['scoreboard' => $scoreboard])
     </section>
 

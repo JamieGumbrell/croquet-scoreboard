@@ -8,7 +8,7 @@
         <input class="input-field grid-2" type="text" name="title" value="{{ old('title', $scoreboard->title) }}">
 
         <h2 class="grid-17">Colour</h2>
-        <input class="input-field grid-4" type="color" name="color" value="{{ old('color', $scoreboard->color) }}">
+        <input class="input-field grid-4 color-input" type="color" name="color" value="{{ old('color', $scoreboard->color) }}">
 
         <h2 class="grid-5">Ball Colour</h2>
         <select class="input-field grid-6" id="ball-color" name="ball_color">

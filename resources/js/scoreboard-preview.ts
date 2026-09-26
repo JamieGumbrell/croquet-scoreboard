@@ -6,6 +6,31 @@ export const initializePreview = (context: ScoreboardContext): void => {
         '[data-scoreboard-preview]',
     );
 
+    document.addEventListener('click', (event) => {
+        const target = event.target;
+
+        if (!(target instanceof Element)) {
+            return;
+        }
+
+        const button = target.closest<HTMLButtonElement>('[data-copy-preview-link]');
+        const link = button?.dataset.copyPreviewLink;
+
+        if (!button || !link) {
+            return;
+        }
+
+        void navigator.clipboard.writeText(link).then(() => {
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            window.setTimeout(() => {
+                button.textContent = originalText;
+            }, 1500);
+        }).catch((error: unknown) => {
+            console.error(error);
+        });
+    });
+
     if (!previewUrl || previews().length === 0) {
         return;
     }

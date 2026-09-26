@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PlayerController;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/player_lists/{playerList}/enable', [PlayerListController::class, 'enable'])->name('player_lists.enable');
     Route::put('/player_lists/{playerList}/disable', [PlayerListController::class, 'disable'])->name('player_lists.disable');
     Route::resource('/player_lists', PlayerListController::class);
+    Route::get('/api/preview/{scoreboard:uid}', [ApiController::class, 'index'])->name('api.preview');
 
 });
 

@@ -48,3 +48,8 @@ form input, form select{
     text-align: center;
     font-weight: bold;
 }
+
+.color-input {
+    height: auto;
+    padding: .25rem;
+}
