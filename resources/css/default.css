@@ -84,3 +84,11 @@ nav a:hover {
 .flex{
     display: flex;
 }
+
+.flex-right {
+    margin-left: auto;
+}
+
+.gap {
+    margin: 0 .5rem;
+}

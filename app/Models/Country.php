@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class Country extends Model
 {
     protected $fillable = [
+        'user_id',
         'name',
         'link',
     ];

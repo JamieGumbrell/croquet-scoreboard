@@ -36,6 +36,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->boolean('enabled')->default(false);
             $table->timestamps();
         });
 
@@ -43,12 +44,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('player_list_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->foreignId('country_id')->constrained()->onDelete('cascade');
+            $table->foreignId('country')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('link');
             $table->timestamps();

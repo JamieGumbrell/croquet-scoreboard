@@ -16,7 +16,12 @@ class CountryController extends Controller
     public function index(): View
     {
         return view('countries.index', [
-            'countries' => Country::query()->orderBy('name')->paginate(20),
+            'countries' => Country::query()
+                ->where(function ($query) {
+                    $query->Where('user_id', auth()->id());
+                })
+                ->orderBy('name')
+                ->paginate(20),
         ]);
     }
 
@@ -34,7 +39,7 @@ class CountryController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validatedData($request, true);
-
+        $data['user_id'] = auth()->id();
         if ($request->hasFile('image')) {
             $data['link'] = $request->file('image')->store('countries', 'public');
         }

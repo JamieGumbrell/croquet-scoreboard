@@ -29,3 +29,6 @@ Thumbs.db
 README.html
 .agents/
 .claude/
+.mcp.json
+boost.json
+AGENTS.md
