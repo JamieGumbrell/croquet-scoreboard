@@ -4,7 +4,11 @@
 @section('body')
     <div class="md-container">
             <h2>Countries</h2>
-            <button class="btn default-primary-color text-primary-color" onclick="window.location.href='{{ route('countries.create') }}'">Add country</button>
+            <div class="flex">
+                <div class="flex-right">
+                    <button class="btn success-color text-primary-color" onclick="window.location.href='{{ route('countries.create') }}'">Add country</button>
+                </div>
+            </div>
 
         @if (session('success'))
             <p class="success-message">{{ session('success') }}</p>
@@ -17,10 +21,10 @@
                     <h3>{{ $country->name }}</h3>
                 </div>
                 <div class="countries-settings">
-                    <div onclick="window.location.href='{{ route('countries.edit', $country) }}';">
+                    <div class="edit" onclick="window.location.href='{{ route('countries.edit', $country) }}';">
                         <x-heroicon-s-pencil-square />
                     </div>
-                    <div onclick="
+                    <div class="delete" onclick="
                         event.preventDefault();
                         if(confirm('Are you sure you want to delete this country?')) { 
                             document.getElementById('delete-country-{{$country->id}}').submit(); 

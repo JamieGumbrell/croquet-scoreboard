@@ -89,3 +89,32 @@
 .btn-enable {
     margin: 0 .5em;
 }
+
+.import-hint {
+    margin: 0;
+}
+
+.import-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+
+.import-table-wrap {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.import-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.import-table th,
+.import-table td {
+    padding: .65rem;
+    border-bottom: 1px solid currentColor;
+    text-align: left;
+}

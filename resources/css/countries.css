@@ -44,7 +44,12 @@
     transition: all .5s;
 }
 
-.countries-settings div:hover{
+.countries-settings div.edit:hover{
+    color: var(--warning-color);
+    transition: all .5s;
+}
+
+.countries-settings div.delete:hover{
     color: var(--error-color);
     transition: all .5s;
 }

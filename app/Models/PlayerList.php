@@ -8,6 +8,7 @@ class PlayerList extends Model
 {
     protected $fillable = [
         'user_id',
-        'name'
+        'name',
+        'enabled'
     ];
 }

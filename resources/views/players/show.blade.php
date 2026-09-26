@@ -4,8 +4,13 @@
 @section('body')
     <div class="md-container">
         <h2>Players</h2>
-        <button class="btn default-primary-color text-primary-color"onclick="window.location.href='{{ route('players.create', ['player_list' => $playerList]) }}';">Add Player</button>
-        <button class="btn default-primary-color text-primary-color"onclick="window.location.href='{{ route('player_lists.index') }}';">Back to Lists</button>
+
+        <div class="flex">
+            <button class="btn default-primary-color text-primary-color"onclick="window.location.href='{{ route('player_lists.index') }}';">Back to Lists</button>
+            <div class="flex flex-right">
+                <button class="btn success-color text-primary-color"onclick="window.location.href='{{ route('players.create', ['player_list' => $playerList]) }}';">Add Player</button>
+            </div>
+        </div>
         @if (session('success'))
             <p class="success-message">{{ session('success') }}</p>
         @endif
