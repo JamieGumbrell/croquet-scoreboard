@@ -42,7 +42,7 @@ class PlayerListController extends Controller
      */
     public function show(PlayerList $playerList)
     {
-        $players = Player::all();
+        $players = Player::with('countryRecord')->get();
         return view('players.show', compact('playerList', 'players'));
     }
 

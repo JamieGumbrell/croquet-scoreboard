@@ -41,7 +41,13 @@ class ScoreboardController extends Controller
      */
     public function show(Scoreboard $scoreboard)
     {
-        $countries = Country::all();
+        $countries = Country::query()
+                ->where(function ($query) {
+                    $query->whereNull('user_id')
+                    ->orWhere('user_id', auth()->id());
+                })
+                ->orderBy('name')
+                ->get();
 
         return response()
             ->view('scoreboards.show', compact('scoreboard', 'countries'))

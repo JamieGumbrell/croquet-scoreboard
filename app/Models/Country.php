@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     protected $fillable = [
+        'user_id',
         'name',
-        'code',
         'link',
     ];
 }

@@ -15,7 +15,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Code</th>
                     <th>Link</th>
                     <th>Image</th>
                     <th>Actions</th>
@@ -25,7 +24,6 @@
                 @forelse ($countries as $country)
                     <tr>
                         <td>{{ $country->name }}</td>
-                        <td>{{ $country->code }}</td>
                         <td>
                             @if ($country->link)
                                 <a href="{{ str_starts_with($country->link, 'countries/') ? \Illuminate\Support\Facades\Storage::disk('public')->url($country->link) : $country->link }}" target="_blank" rel="noreferrer">View image</a>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use App\Models\PlayerList;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -18,9 +20,17 @@ class PlayerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('players.create');
+        $playerList = PlayerList::findOrFail($request->query('player_list'));
+        $countries = Country::query()
+                ->where(function ($query) {
+                    $query->whereNull('user_id')
+                    ->orWhere('user_id', auth()->id());
+                })
+                ->orderBy('name')
+                ->get();
+        return view('players.create', compact('playerList', 'countries'));
     }
 
     /**
@@ -28,11 +38,11 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        $data['user_id'] = auth()->id();
-        $data['name'] = "New Player";
-        Player::create($data);
+        $validated = $this->validateData($request);
 
-        return redirect()->route('players.index')->with('success', 'Player created successfully.');
+        Player::create($validated);
+
+        return redirect()->route('player_lists.show', $validated['player_list_id'])->with('success', 'Player created successfully.');
     }
 
     /**
@@ -48,7 +58,16 @@ class PlayerController extends Controller
      */
     public function edit(Player $player)
     {
-        //
+        $playerList = PlayerList::findOrFail($player->player_list_id);
+        $countries = Country::query()
+                ->where(function ($query) {
+                    $query->whereNull('user_id')
+                    ->orWhere('user_id', auth()->id());
+                })
+                ->orderBy('name')
+                ->get();
+
+        return view('players.edit', compact('player', 'playerList', 'countries'));
     }
 
     /**
@@ -56,7 +75,12 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
-        //
+        $validated = $this->validateData($request);
+
+        $player->update($validated);
+
+        return redirect()->route('player_lists.show', $player->player_list_id)->with('success', 'Player updated successfully.');
+    
     }
 
     /**
@@ -64,6 +88,18 @@ class PlayerController extends Controller
      */
     public function destroy(Player $player)
     {
-        //
+        $player_list_id = $player->player_list_id;
+        $player->delete();
+
+        return redirect()->route('player_lists.show', $player_list_id)->with('success', 'Country deleted successfully.');
+    }
+
+    private function validateData(Request $request)
+    {
+        return $request->validate([
+            'player_list_id' => ['required', 'integer'],
+            'name' => ['required', 'string', 'max:255'],
+            'country' => ['nullable', 'integer', 'exists:countries,id'],
+        ]);
     }
 }

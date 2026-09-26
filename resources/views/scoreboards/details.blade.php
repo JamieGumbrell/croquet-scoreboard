@@ -12,7 +12,7 @@
 
         <h2 class="grid-5">Ball Colour</h2>
         <select class="input-field grid-6" id="ball-color" name="ball_color">
-            <option value="hid" @selected(old('ball_color', $scoreboard->ball_color) === 'hid')>--Hidden--</option>
+            <option value="0" @selected(old('ball_color', $scoreboard->ball_color) === 0)>--Hidden--</option>
             <option value="primary" @selected(old('ball_color', $scoreboard->ball_color) === 'primary')>Primary</option>
             <option value="secondary" @selected(old('ball_color', $scoreboard->ball_color) === 'secondary')>Secondary</option>
         </select>

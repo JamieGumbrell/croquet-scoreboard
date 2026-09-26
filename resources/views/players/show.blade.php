@@ -4,14 +4,20 @@
 @section('body')
     <div class="md-container">
         <h2>Players</h2>
-        <button class="btn default-primary-color text-primary-color"onclick="window.location.href='{{ route('players.create') }}';">Add Player</button>
+        <button class="btn default-primary-color text-primary-color"onclick="window.location.href='{{ route('players.create', ['player_list' => $playerList]) }}';">Add Player</button>
+        <button class="btn default-primary-color text-primary-color"onclick="window.location.href='{{ route('player_lists.index') }}';">Back to Lists</button>
         @if (session('success'))
             <p class="success-message">{{ session('success') }}</p>
         @endif
         
         @forelse ($players as $player)
             <div class="player-container">
-                <div class="player-content" onclick="window.location.href='{{ route('players.show', $player) }}';">
+                <div class="player-content">
+                    @if ($player->countryRecord?->link)
+                        <div class="player_flag">
+                            <img src="{{ str_starts_with($player->countryRecord->link, 'countries/') ? \Illuminate\Support\Facades\Storage::disk('public')->url($player->countryRecord->link) : $player->countryRecord->link }}" alt="{{ $player->countryRecord->name }}">
+                        </div>    
+                    @endif
                     <h3>{{ $player->name }}</h3>
                 </div>
                 <div class="player-settings">
@@ -27,14 +33,12 @@
                     </div>
                 </div>
             </div>
-            <form id="delete-player-{{$player>id}}" method="POST" action="{{ route('player.destroy', $player) }}">
+            <form id="delete-player-{{$player->id}}" method="POST" action="{{ route('players.destroy', $player) }}">
                 @csrf
                 @method('DELETE')
             </form>
         @empty
-            <tr>
-                <td colspan="4">No players have been added.</td>
-            </tr>
+            <div>No players have been added.</div>
         @endforelse
     </div>
 @endsection

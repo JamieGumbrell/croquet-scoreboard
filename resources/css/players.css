@@ -1,16 +1,16 @@
-.player-list-container{
+.player-list-container, .player-container{
     margin: .5rem 0;
     transform: scale(1);
     transition: all .5s;
     display: flex;
 }
 
-.player-list-container:hover{
+.player-list-container:hover, .player-container:hover{
     transform: scale(1.02);
     transition: all .5s;
 }
 
-.player-list-content{
+.player-list-content, .player-content{
     display:flex;
     flex: 1;
     padding: .5rem;
@@ -18,32 +18,33 @@
     border-radius: .5rem 0 0 .5rem;
 }
 
-.player-list-settings{
+.player-list-settings, .player-settings{
     display: flex;
     border: 3px solid black;
     border-left: none;
 }
 
-.player-list-settings div{
+.player-list-settings div, .player-settings div{
     display: flex;
     padding: .25rem;
     width: 2rem;
     transition: all .5s;
 }
 
-.player-list-settings div:hover{
+.player-list-settings div:hover, .player-settings div:hover{
     transition: all .5s;
 }
 
-.player-list-settings div.enable:hover{
+.player-list-settings div.enable:hover {
     color: var(--success-color);
 }
 
-.player-list-settings div.edit:hover{
+.player-list-settings div.edit:hover, .player-settings div.edit:hover{
     color: var(--warning-color);
 }
 
-.player-list-settings div.delete:hover, .player-list-settings div.disable:hover{
+.player-list-settings div.delete:hover, .player-list-settings div.disable:hover,
+.player-settings div.delete:hover, .player-settings div.disable:hover{
     color: var(--error-color);
 }
 
@@ -62,7 +63,7 @@
     max-width: 5em;
 }
 
-.player-list-heading {
+.player-list-heading, .player-heading {
     display:flex;
     margin-bottom: .5em;
 }
@@ -71,15 +72,15 @@
     flex: 1;
 }
 
-.player-list-name {
+.player-list-name, .player-name {
     display: flex;
 }
 
-.player-list-name input {
+.player-list-name input, .player-name input {
     margin: 0 .5em;
 }
 
-.player-list-name label {
+.player-list-name label, .player-name label {
     font-size: 24px;
     align-self: center;
     font-weight: bold;
