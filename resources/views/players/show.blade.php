@@ -19,7 +19,7 @@
             <div class="player-container">
                 <div class="player-content">
                     @if ($player->countryRecord?->link)
-                        <div class="player_flag">
+                        <div class="player-flag">
                             <img src="{{ str_starts_with($player->countryRecord->link, 'countries/') ? \Illuminate\Support\Facades\Storage::disk('public')->url($player->countryRecord->link) : $player->countryRecord->link }}" alt="{{ $player->countryRecord->name }}">
                         </div>    
                     @endif

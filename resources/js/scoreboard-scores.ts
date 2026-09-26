@@ -8,7 +8,18 @@ export const initializeScoresTab = (context: ScoreboardContext): void => {
         return;
     }
 
-    playersForm?.addEventListener('change', () => {
+    playersForm?.addEventListener('change', (event) => {
+        const target = event.target;
+
+        if (target instanceof HTMLSelectElement && target.dataset.countryTarget) {
+            const countryField = playersForm.elements.namedItem(target.dataset.countryTarget);
+            const selectedCountry = target.selectedOptions[0]?.dataset.country ?? '';
+
+            if (countryField instanceof HTMLInputElement || countryField instanceof HTMLSelectElement) {
+                countryField.value = selectedCountry;
+            }
+        }
+
         void submitScoreboardForm(context, playersForm);
     });
 
@@ -23,10 +34,10 @@ export const initializeScoresTab = (context: ScoreboardContext): void => {
         const country2 = playersForm.elements.namedItem('country2');
 
         if (
-            !(name1 instanceof HTMLInputElement) ||
-            !(name2 instanceof HTMLInputElement) ||
-            !(country1 instanceof HTMLSelectElement) ||
-            !(country2 instanceof HTMLSelectElement)
+            (!(name1 instanceof HTMLInputElement) && !(name1 instanceof HTMLSelectElement)) ||
+            (!(name2 instanceof HTMLInputElement) && !(name2 instanceof HTMLSelectElement)) ||
+            (!(country1 instanceof HTMLInputElement) && !(country1 instanceof HTMLSelectElement)) ||
+            (!(country2 instanceof HTMLInputElement) && !(country2 instanceof HTMLSelectElement))
         ) {
             return;
         }

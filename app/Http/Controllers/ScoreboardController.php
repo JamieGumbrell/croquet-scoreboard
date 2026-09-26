@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Scoreboard;
 use App\Models\Country;
+use App\Models\Player;
+use App\Models\PlayerList;
 use Illuminate\Http\Request;
 
 class ScoreboardController extends Controller
@@ -51,9 +53,15 @@ class ScoreboardController extends Controller
                 })
                 ->orderBy('name')
                 ->get();
+        $players = Player::query()
+            ->whereIn('player_list_id', PlayerList::query()
+                ->where('user_id', auth()->id())
+                ->where('enabled', true)
+                ->select('id'))
+            ->get();
 
         return response()
-            ->view('scoreboards.show', compact('scoreboard', 'countries'))
+            ->view('scoreboards.show', compact('scoreboard', 'countries', 'players'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
     }
 
