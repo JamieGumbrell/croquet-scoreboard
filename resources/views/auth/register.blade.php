@@ -6,6 +6,7 @@
         <div class="form">
             <h1>Register</h1>
             <form id="form" action="{{route('register')}}" method="post">
+                @csrf
                 <div class="input-container">
                     <input type="text" name="username" placeholder="Username" class="input-field" value="{{old('username')}}">
                 </div>
