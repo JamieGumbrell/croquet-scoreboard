@@ -4,7 +4,7 @@ A Laravel application for creating and displaying croquet scoreboards.
 
 ## Requirements
 
-Install these programs on the new machine:
+For a native setup, install these programs on the new machine:
 
 - PHP 8.3 or newer, with the SQLite and Mbstring extensions enabled
 - Composer
@@ -14,7 +14,7 @@ Install these programs on the new machine:
 
 The application uses SQLite by default. A different database can be used by changing the `DB_*` values in `.env`.
 
-Check the installed versions:
+Check the installed versions for a native setup:
 
 ```bash
 php -v
@@ -22,6 +22,34 @@ composer -V
 node --version
 npm --version
 ```
+
+## Docker Build and Run
+
+Docker is the quickest setup on a new machine. Install Docker Desktop (Windows/macOS) or Docker Engine (Linux); PHP, Composer, Node.js, and npm are not needed on the host.
+
+Clone the repository, build the image, start the container with a persistent SQLite volume, then run the initial migrations:
+
+```bash
+git clone <repository-url> croquet-scoreboard
+cd croquet-scoreboard
+docker build -t croquet-scoreboard .
+docker run -d --name croquet-scoreboard --restart unless-stopped -p 8080:80 -v croquet-scoreboard-data:/var/www/html/database -e APP_URL=http://localhost:8080 -e APP_DEBUG=false croquet-scoreboard
+docker exec croquet-scoreboard php artisan migrate --force
+```
+
+Open [http://localhost:8080](http://localhost:8080). The named volume keeps the SQLite database when the container is replaced. To view container output or stop the app, run `docker logs -f croquet-scoreboard` or `docker stop croquet-scoreboard`.
+
+To deploy an updated image, rebuild it and replace the container. Keep the same named volume so the database is preserved:
+
+```bash
+docker build -t croquet-scoreboard .
+docker stop croquet-scoreboard
+docker rm croquet-scoreboard
+docker run -d --name croquet-scoreboard --restart unless-stopped -p 8080:80 -v croquet-scoreboard-data:/var/www/html/database -e APP_URL=http://localhost:8080 -e APP_DEBUG=false croquet-scoreboard
+docker exec croquet-scoreboard php artisan migrate --force
+```
+
+The image generates a fallback `APP_KEY` during build for local use. For a public deployment, generate a unique key with `docker run --rm croquet-scoreboard php artisan key:generate --show`, pass it to `docker run` as `-e APP_KEY=<generated-key>`, set `APP_URL` to the public URL, and retain that same key across rebuilds. Keep the key private.
 
 ## Initial Setup
 
